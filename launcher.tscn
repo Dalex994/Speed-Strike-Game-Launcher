@@ -1,0 +1,93 @@
+[gd_scene load_steps=5 format=3 uid="uid://de1nv1x1ywt76"]
+
+[ext_resource type="Texture2D" uid="uid://30ugjtj5osbb" path="res://icon.svg" id="1_f1fvj"]
+[ext_resource type="Script" path="res://GameLaunch.gd" id="2_u7dx5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_83vnj"]
+bg_color = Color(0.232356, 0.248546, 0.396478, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7t6xp"]
+bg_color = Color(0.0768358, 0.0768358, 0.0768358, 1)
+
+[node name="Launcher" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_83vnj")
+
+[node name="MarginContainer" type="MarginContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer"]
+layout_mode = 2
+
+[node name="Logo" type="TextureRect" parent="Background/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "This will be your logo !"
+texture = ExtResource("1_f1fvj")
+stretch_mode = 5
+
+[node name="Content" type="Panel" parent="Background/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.35
+focus_neighbor_top = NodePath("../Logo")
+theme_override_styles/panel = SubResource("StyleBoxFlat_7t6xp")
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/MarginContainer/VBoxContainer/Content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/MarginContainer/VBoxContainer/Content/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="logo" type="TextureRect" parent="Background/MarginContainer/VBoxContainer/Content/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer/VBoxContainer/Content/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="Label" type="Label" parent="Background/MarginContainer/VBoxContainer/Content/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "This is my game description"
+
+[node name="Button" type="Button" parent="Background/MarginContainer/VBoxContainer/Content/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/align_to_largest_stylebox = 64
+text = "Download"
+script = ExtResource("2_u7dx5")
